@@ -4,8 +4,58 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-class Slave {
-    static blackNames = [
+class Book {
+    static bookNames = [
+        'Officer With A UFO',
+        
+        'Mercenary Of Nowhere',
+        
+        'Beast Of Exploration',
+        
+        'Hero Of Sunshine',
+        
+        'Martians Of Outer Space',
+        
+        'Spies Of The New World',
+        
+        'Robots Of The Outlands',
+        
+        'Mercenaries Of The Crash',
+        
+        'Volunteers And Clones',
+        
+        'Creatures And Volunteers',
+        
+        'Creators And Traitors',
+        
+        'Defenders And Intruders',
+        
+        'Defeat Of Space',
+        
+        'Murder Of The Crash',
+        
+        'Signs Of New Worlds',
+        
+        'Extinction Of The Future',
+        
+        'Right For My Journey',
+        
+        'Basic A Nuclear Winter',
+        
+        'Anxious For The Mists',
+        
+        'Understanding The Revolution',
+        
+        'Joy Of The Sun',
+        
+        'Admiration For The End Of The Sun',
+        
+        'Lost In The Portal',
+        
+        'Origin Of The Portal'
+    ]
+    
+    static namesList = [
         'Dee',
         'Deiondre',
         'Dele',
@@ -57,13 +107,13 @@ class Slave {
         'Runako',
         'Salim'
     ]
-    static slaves = [
+    static books = [
 
     ]
 
-    constructor(name, age, cost) {
+    constructor(name, author, cost) {
         this.name = name;
-        this.age = age;
+        this.author = author;
         this.cost = cost;
     }
 
@@ -73,40 +123,42 @@ class Slave {
 }
 
 class Customer {
-    ownedSlaves = []
+    ownedBooks = []
     constructor(balance) {
         this.balance = balance;
     }
 
-    sell(slave, id) {
-        if (this.ownedSlaves.includes(slave)) {
-            this.balance += slave.cost;
-            this.ownedSlaves.splice(id, 1)
-            Slave.slaves.push(slave)
-            console.log("sold " + slave.name)
-            displayOwnedSlaves()
+    sell(book, id) {
+        if (this.ownedBooks.includes(book)) {
+            this.balance += book.cost;
+            this.ownedBooks.splice(id, 1)
+            Book.books.push(book)
+            console.log("sold " + book.name)
+            displayOwnedBooks()
         }
     }
 }
 
+//create a new customer named 'me'
 me = new Customer(9999);
 
-for (i = 0; i < 5; i++) {
-    Slave.slaves.push(new Slave(Slave.blackNames[getRandomInt(0,Slave.blackNames.length - 1)] + '\n' + Slave.blackNames[getRandomInt(0,Slave.blackNames.length - 1)], getRandomInt(12,56), getRandomInt(1000, 10000)));
+//generate 6 random books
+for (let i = 0; i < 6; i++) {
+    Book.books.push(new Book(Book.bookNames[getRandomInt(0,Book.bookNames.length - 1)], Book.namesList[getRandomInt(0,Book.namesList.length - 1)] + ' ' + Book.namesList[getRandomInt(0,Book.namesList.length - 1)], getRandomInt(2, 20)));
 }
 
-const slaveMenu = document.getElementById("slaveMenu");
-const slavebg = document.getElementById("slavebg")
+//getting the different elements from the document
+const bookBG = document.getElementById("newBookMenuBG")
 const submitButton = document.getElementById("submitButton")
-const ownedSlavesButton = document.getElementById("displayOwnedSlavesButton")
-const ownedSlavesPanel = document.getElementById('ownedSlavesPanel')
+const ownedBooksButton = document.getElementById("displayOwnedBooksButton")
+const ownedBooksPanel = document.getElementById('ownedBooksPanel')
 
-var nameText = document.getElementById("nameInput");
-var ageText = document.getElementById("ageInput");
-var costText = document.getElementById("costInput");
-var slaveContainer = document.getElementById("slaveContainer")
+let nameText = document.getElementById("nameInput");
+let authorText = document.getElementById("ageInput");
+let costText = document.getElementById("costInput");
+let bookContainer = document.getElementById("bookContainer")
 
-function fadeInOut(menu) {
+function toggleMenu(menu) {
     if (menu.classList.contains("active")) {
         menu.classList.remove("active")
         setTimeout(function () {
@@ -118,182 +170,182 @@ function fadeInOut(menu) {
     }
 }
 
-function showSlaveMenu() {
-    ageText.value = ""
+function showBookMenu() {
+    authorText.value = ""
     nameText.value = ""
     costText.value = ""
-    fadeInOut(slavebg)
+    toggleMenu(bookBG)
 }
 
-ownedSlavesButton.addEventListener('click', showOwnedSlaveMenu);
+ownedBooksButton.addEventListener('click', showOwnedBookMenu);
 
-function showOwnedSlaveMenu() {
-    displayOwnedSlaves()
-    fadeInOut(ownedSlavesPanel)
+function showOwnedBookMenu() {
+    displayOwnedBooks()
+    toggleMenu(ownedBooksPanel)
 }
 
-function displayOwnedSlaves() {
-    const container = document.getElementById('ownedSlavesPanelContainer');
+function displayOwnedBooks() {
+    const container = document.getElementById('ownedBooksPanelContainer');
     container.innerHTML = '';
     results = false;
-    slaves = me.ownedSlaves;
-    if (slaves.length > 0) {
-        for (i = 0; i < slaves.length; i++) {
+    books = me.ownedBooks;
+    if (books.length > 0) {
+        for (i = 0; i < books.length; i++) {
             // Loop through the people array
-            var slave = slaves[i];
+            let book = books[i];
 
-            slave.slaveID = i;
+            book.bookID = i;
 
-            var slaveBox = document.createElement('div')
-            slaveBox.classList.add('slave');
+            let bookBox = document.createElement('div')
+            bookBox.classList.add('book');
 
-            // Create a paragraph to display the slave's name and age
+            // Create a paragraph to display the book's name and author
 
-            var ageHeading = document.createElement("h1");
-            var costHeading = document.createElement("h1");
+            let authorHeading = document.createElement("h1");
+            let costHeading = document.createElement("h1");
             let nameHeading = document.createElement('h1')
 
-            nameHeading.textContent = slave.name;
+            nameHeading.textContent = book.name;
             nameHeading.classList.add('nameText')
 
-            ageHeading.textContent = slave.age + ' years old';
-            ageHeading.classList.add('ageText')
+            authorHeading.textContent = 'Written by ' + book.author;
+            authorHeading.classList.add('authorText')
 
-            costHeading.textContent = slave.cost + '$';
+            costHeading.textContent = book.cost + '$';
             costHeading.classList.add('costText')
 
 
-            // Create a button for each slave
-            var buyButton = document.createElement("button");
-            buyButton.textContent = "Sell " + slave.name;
+            // Create a button for each book
+            let buyButton = document.createElement("button");
+            buyButton.textContent = "Sell book";
             buyButton.classList.add('buyButton')
-            buyButton.addEventListener('click', me.sell.bind(slave, slave.slaveID))
+            buyButton.addEventListener('click', me.sell.bind(book, book.bookID))
 
 
 
             // Append the button and paragraph to the container
-            container.appendChild(slaveBox);
+            container.appendChild(bookBox);
 
-            slaveBox.appendChild(nameHeading);
-            slaveBox.appendChild(ageHeading);
-            slaveBox.appendChild(costHeading);
+            bookBox.appendChild(nameHeading);
+            bookBox.appendChild(authorHeading);
+            bookBox.appendChild(costHeading);
 
-            slaveBox.appendChild(buyButton);
+            bookBox.appendChild(buyButton);
         }
     } else {
-        container.innerHTML = '<h1 class="logo" style="font-size: 80px; color: white; margin-top: 0; justify-self: center">No slaves to display.</h1>'
+        container.innerHTML = '<h1 class="logo" style="font-size: 80px; color: white; margin-top: 0; justify-self: center">No books to display.</h1>'
     }
 }
 
-function submitSlaves() {
+function submitBooks() {
 
-    if (nameText.value != '' && Number.isInteger(parseInt(ageText.value)) && Number.isInteger(parseInt(costText.value))) {
-        newSlave = new Slave(nameText.value, parseInt(ageText.value), parseInt(costText.value))
-        Slave.slaves.push(newSlave)
-        console.log(newSlave)
+    if (nameText.value !== '' && authorText !== '' && Number.isInteger(parseInt(costText.value))) {
+        newBook = new Book(nameText.value, parseInt(authorText.value), parseInt(costText.value))
+        Book.books.push(newBook)
+        console.log(newBook)
 
-        console.log(newSlave.name)
-        fadeInOut(slavebg)
-        displaySlaves()
-        console.log(Slave.slaves[0])
+        console.log(newBook.name)
+        toggleMenu(bookBG)
+        displayBooks()
+        console.log(Book.books[0])
     }
 }
 
 searchBar = document.getElementById("searchBar")
 
-searchBar.addEventListener('input', displaySearchedSlaves)
+searchBar.addEventListener('input', displaySearchedBooks)
 
-function displaySlaves() {
-    slaveContainer.innerHTML = '';
+function displayBooks() {
+    bookContainer.innerHTML = '';
     results = false;
-    slaves = Slave.slaves;
-    const container = document.getElementById("slaveContainer");
-    if (slaves.length > 0) {
-        for (i = 0; i < slaves.length; i++) {
+    books = Book.books;
+    const container = document.getElementById("bookContainer");
+    if (books.length > 0) {
+        for (i = 0; i < books.length; i++) {
             // Loop through the people array
-            var slave = slaves[i];
+            let book = books[i];
 
-            slave.slaveID = i;
+            book.bookID = i;
 
-            var slaveBox = document.createElement('div')
-            slaveBox.classList.add('slave');
+            let bookBox = document.createElement('div')
+            bookBox.classList.add('book');
 
-            // Create a paragraph to display the slave's name and age
+            // Create a paragraph to display the book's name and author
 
-            var ageHeading = document.createElement("h1");
-            var costHeading = document.createElement("h1");
+            let authorHeading = document.createElement("h1");
+            let costHeading = document.createElement("h1");
             let nameHeading = document.createElement('h1')
 
-            nameHeading.textContent = slave.name;
+            nameHeading.textContent = book.name;
             nameHeading.classList.add('nameText')
 
-            ageHeading.textContent = slave.age + ' years old';
-            ageHeading.classList.add('ageText')
+            authorHeading.textContent = 'Written by ' + book.author;
+            authorHeading.classList.add('authorText')
 
-            costHeading.textContent = slave.cost + '$';
+            costHeading.textContent = book.cost + '$';
             costHeading.classList.add('costText')
 
 
-            // Create a button for each slave
-            var buyButton = document.createElement("button");
-            buyButton.textContent = "Buy " + slave.name;
+            // Create a button for each book
+            let buyButton = document.createElement("button");
+            buyButton.textContent = 'Buy this book';
             buyButton.classList.add('buyButton')
-            buyButton.addEventListener("click", buySlave.bind(null, slave, me, slave.slaveID));
+            buyButton.addEventListener("click", buyBook.bind(null, book, me, book.bookID));
 
 
 
             // Append the button and paragraph to the container
-            container.appendChild(slaveBox);
+            container.appendChild(bookBox);
 
-            slaveBox.appendChild(nameHeading);
-            slaveBox.appendChild(ageHeading);
-            slaveBox.appendChild(costHeading);
+            bookBox.appendChild(nameHeading);
+            bookBox.appendChild(authorHeading);
+            bookBox.appendChild(costHeading);
 
-            slaveBox.appendChild(buyButton);
+            bookBox.appendChild(buyButton);
         }
     } else {
-        container.innerHTML = '<h1 class="logo" style="font-size: 80px; color: white; margin-top: 0; justify-self: center">No slaves to display.</h1>'
+        container.innerHTML = '<h1 class="logo" style="font-size: 80px; color: white; margin-top: 0; justify-self: center">No books to display.</h1>'
     }
 }
 
-function displaySearchedSlaves() {
+function displaySearchedBooks() {
     results = false
-    slaveContainer.innerHTML = "";
-    for (i = 0; i < Slave.slaves.length; i++) {
-        Slave.slaves[i].getID(i);
-        if(Slave.slaves[i].name.toLowerCase().includes(searchBar.value.toLowerCase())) {
+    bookContainer.innerHTML = "";
+    for (i = 0; i < Book.books.length; i++) {
+        Book.books[i].getID(i);
+        if(Book.books[i].name.toLowerCase().includes(searchBar.value.toLowerCase())) {
             results = true
 
-            slaves = Slave.slaves;
-            const container = document.getElementById("slaveContainer");
-            var slave = slaves[i];
+            books = Book.books;
+            const container = document.getElementById("bookContainer");
+            let book = books[i];
 
-            slave.slaveID = i;
+            book.bookID = i;
 
-            var slaveBox = document.createElement('div')
-            slaveBox.classList.add('slave');
+            let bookBox = document.createElement('div')
+            bookBox.classList.add('book');
 
-            // Create a paragraph to display the slave's name and age
+            // Create a paragraph to display the book's name and author
 
-            var ageHeading = document.createElement("h1");
-            var costHeading = document.createElement("h1");
+            let authorHeading = document.createElement("h1");
+            let costHeading = document.createElement("h1");
             let nameHeading = document.createElement('h1')
 
-            nameHeading.textContent = slave.name;
+            nameHeading.textContent = book.name;
             nameHeading.classList.add('nameText')
 
-            ageHeading.textContent = slave.age + ' years old';
-            ageHeading.classList.add('ageText')
+            authorHeading.textContent = 'Written by ' + book.author;
+            authorHeading.classList.add('authorText')
 
-            costHeading.textContent = slave.cost + '$';
+            costHeading.textContent = book.cost + '$';
             costHeading.classList.add('costText')
 
 
-            // Create a button for each slave
-            var buyButton = document.createElement("button");
-            buyButton.textContent = "Buy " + slave.name;
+            // Create a button for each book
+            let buyButton = document.createElement("button");
+            buyButton.textContent = 'Buy this book';
             buyButton.classList.add('buyButton')
-            buyButton.addEventListener("click", buySlave.bind(null, slave, me, slave.slaveID));
+            buyButton.addEventListener("click", buyBook.bind(null, book, me, book.bookID));
             buyButton.addEventListener('mouseenter', function () {
                 buyButton.classList.add('hover')
             })
@@ -304,27 +356,27 @@ function displaySearchedSlaves() {
 
 
             // Append the button and paragraph to the container
-            container.appendChild(slaveBox);
+            container.appendChild(bookBox);
 
-            slaveBox.appendChild(nameHeading);
-            slaveBox.appendChild(ageHeading);
-            slaveBox.appendChild(costHeading);
+            bookBox.appendChild(nameHeading);
+            bookBox.appendChild(authorHeading);
+            bookBox.appendChild(costHeading);
 
-            slaveBox.appendChild(buyButton);
+            bookBox.appendChild(buyButton);
         }
     }
     if (results === false) {
-        slaveContainer.innerHTML = '<h1 class="logo" style="font-size: 80px; color: white; margin-top: 0; justify-self: center">No search results.</h1>'
+        bookContainer.innerHTML = '<h1 class="logo" style="font-size: 80px; color: white; margin-top: 0; justify-self: center">No search results.</h1>'
     }
 }
 
-function buySlave(slave, customer, id) {
-    if (Slave.slaves.includes(slave)) {
-        if(slave.cost < customer.balance) {
-            customer.balance -= slave.cost;
-            customer.ownedSlaves.push(slave)
-            Slave.slaves.splice(id, 1)
-            console.log("bought " + slave.name)
+function buyBook(book, customer, id) {
+    if (Book.books.includes(book)) {
+        if(book.cost < customer.balance) {
+            customer.balance -= book.cost;
+            customer.ownedBooks.push(book)
+            Book.books.splice(id, 1)
+            console.log("bought " + book.name)
         }
         else {
             console.log('not enough money')
@@ -332,30 +384,28 @@ function buySlave(slave, customer, id) {
     } else {
         console.log('couldnt buy')
     }
-    displaySlaves()
+    displayBooks()
 }
 
 
 
-const addSlaveButton = document.getElementById("addSlaveButton");
+const addBookButton = document.getElementById("addBookButton");
 
-addSlaveButton.addEventListener("click", showSlaveMenu)
-submitButton.addEventListener("click", submitSlaves)
+addBookButton.addEventListener("click", showBookMenu)
+submitButton.addEventListener("click", submitBooks)
 xbutton = document.getElementById('xbutton')
 xbutton.addEventListener('click', function () {
-    fadeInOut(slavebg)
+    toggleMenu(bookBG)
 })
-dasb = document.getElementById('displayAllSlavesButton')
+dasb = document.getElementById('displayAllBooksButton')
 dasb.addEventListener('click', function () {
     searchBar.value = ''
-    displaySlaves()
+    displayBooks()
 })
 
-displaySlaves()
+displayBooks()
 setInterval(function () {
     balance = document.getElementById('balance')
     console.log(me.balance)
     balance.textContent = 'Current Balance:   ' + me.balance + '$';
 }, 300);
-
-createMenu()

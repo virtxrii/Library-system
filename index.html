@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Apple Books</title>
+</head>
+<body>
+<div class="topbar">
+    <div class="logo">
+        <img class="apple" src="res/img.png" alt="">
+        <h1 class="logo">Apple Books</h1>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><button id="displayOwnedBooksButton">Owned Books</button></li>
+            <li id="balance" class="balance">Balance</li>
+        </ul>
+    </nav>
+</div>
+<div class="mainMenu" id="mainMenu">
+    <h1 class="menuText" style="margin-top: 5%">Books.</h1>
+    <h1 class="menuText">Management made simple.</h1>
+    <button id="addBookButton" class="addBookButton">Add a book</button>
+
+
+
+<div class="menuBackground" id="newBookMenuBG">
+    <div id="bookMenu" class="bookMenu">
+        <button class="xbutton" id="xbutton">X</button>
+        <h1 class="logo" style="font-size: 50px; color: black; margin: 0; margin-bottom: 20px;">Add a book</h1>
+        <input type="text" id="nameInput" class="bookinput" placeholder="Book name">
+        <input type="text" id="ageInput" class="bookinput" placeholder="Book author">
+        <input type="text" id="costInput" class="bookinput" placeholder="Book cost">
+        <button id="submitButton">Submit</button>
+    </div>
+</div>
+</div>
+<div id="ownedBooksContainer" class="ownedBooksContainer">
+    <div id="ownedBooksPanel" class="ownedBooksPanel">
+        <div class="ownedBooksPanelContainer" id="ownedBooksPanelContainer">
+
+        </div>
+    </div>
+</div>
+<div id="searchMenu" class="searchMenu">
+    <input id="searchBar" class="searchBar" placeholder="Search...">
+    <button id="displayAllBooksButton" class="addBookButton" style="font-size: 300%">Display all books</button>
+</div>
+<div class="bookPanel">
+    <h1 class="titleText">Books:</h1>
+    <div id="bookContainer" class="bookContainer">
+        <h1 class="logo" style="font-size: 80px; color: white; margin-top: 0;">No books available.</h1>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

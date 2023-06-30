@@ -8,11 +8,10 @@ body {
     display: flex;
     z-index: 0;
     background-color: white;
-    background-image: url("pexels-lalesh-aldarwish-147635.jpg");
     background-size: 100%;
     width: auto;
     padding: 0;
-    padding-top: 6.1%;
+    padding-top: 10vw;
     margin: 0;
     flex-direction: column;
 }
@@ -24,13 +23,17 @@ body {
     align-items: center;
 }
 
-.slaveContainer {
+.bookContainer {
+    /* margin: 1vw; */
+    gap: 3vw;
+    grid-template-columns: repeat(3, 1fr);
     position: relative;
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: flex-start;
     height: 40%;
+    justify-items: center;
+    justify-content: center;
 }
 
 .apple {
@@ -56,10 +59,9 @@ body {
     display: flex;
     margin-right: 40px;
     margin-left: 20px;
-
     font-family: SFPro;
     color: white;
-    font-size: 8vh;
+    font-size: 4vw;
 }
 
 .menuText {
@@ -75,13 +77,13 @@ body {
 
 @font-face {
     font-family: "SFPro";
-    src: url("fonts/SFPRODISPLAYBOLD.OTF") format("truetype");
+    src: url("res/fonts/SFPRODISPLAYBOLD.OTF") format("truetype");
 
 }
 
 @font-face {
     font-family: "SFProLight";
-    src: url("fonts/SFPRODISPLAYREGULAR.OTF") format("truetype");
+    src: url("res/fonts/SFPRODISPLAYREGULAR.OTF") format("truetype");
 }
 
 .navbar ul{
@@ -114,9 +116,10 @@ body {
 }
 
 .balance {
+    display: block;
     font-family: SFPro;
     color: white;
-    font-size: 6vh;
+    font-size: 3vw;
     position: absolute;
     top: 15%;
     right: 5%;
@@ -124,7 +127,7 @@ body {
 
 
 .topbar {
-    height: 16vh;
+    height: 9vw;
     color: white;
     position: fixed;
     top: 0;
@@ -138,7 +141,7 @@ body {
     box-shadow: 0 2px 4px black;
 }
 
-.ownedSlavesPanel {
+.ownedBooksPanel {
     overflow: auto;
     align-items: center;
     flex-direction: column;
@@ -155,32 +158,41 @@ body {
     transition: opacity 0.3s ease-in;
     transition: opacity 0.3s ease-out;
     z-index: 999;
+    justify-content: center;
 }
 
-.ownedSlavesPanelContainer {
+.ownedBooksPanelContainer {
+    gap: 1vw;
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+    display: grid;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 40%;
     box-shadow: inset 0px 0px 20px 20px black;
-    display: flex;
+    display: grid;
+    place-items: center;
     width: 93vw;
     overflow: auto;
     height: 72vh;
     flex-direction: row;
     flex-wrap: wrap;
     outline: 2px solid white;
+    justify-items: center;
+    justify-content: center;
 }
 
-.ownedSlavesContainer {
-    
-display: flex;
-    
-height: 100%;
-    
-width: 100%;
-    
-flex-wrap: wrap;
-    
-flex-direction: row;
-    
-align-items: center;
+.ownedBooksContainer {
+    top: 0;
+    z-index: 988;
+    position: fixed;
+    /* display: grid; */
+    height: 100%;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 }
 
 .xbutton{
@@ -205,7 +217,7 @@ align-items: center;
     transform: scale(0.95);
 }
 
-.slaveMenu {
+.bookMenu {
     align-items: center;
     flex-direction: column;
     box-shadow: 0 2px 4px black;
@@ -218,7 +230,7 @@ align-items: center;
     position: fixed;
 }
 
-.slavePanel {
+.bookPanel {
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -227,7 +239,7 @@ align-items: center;
     box-sizing: border-box;
     width: 100%;
     padding: 2.5%;
-    padding-left: 4%;
+    /* padding-left: 4%; */
 }
 
 .menuBackground {
@@ -253,7 +265,7 @@ align-items: center;
     transition: opacity 0.3s ease-in-out;
 }
 
-.slaveinput {
+.bookinput {
     border: 4px solid black;
     border-radius: 10px;
     position: relative;
@@ -267,17 +279,17 @@ align-items: center;
 }
 
 
-.slaveinput:hover {
+.bookinput:hover {
     transform: scale(0.95);
 }
 
-.slaveinput:focus {
+.bookinput:focus {
     transform: scale(0.95);
 }
 
 
 
-.addSlaveButton {
+.addBookButton {
     margin-top: 2.5%;
     border: 4px solid black;
     background-color: white;
@@ -293,7 +305,7 @@ align-items: center;
     transition: background-color 0.2s ease-in-out;
 }
 
-.addSlaveButton:hover {
+.addBookButton:hover {
     color: white;
     background-color: black;
 }
@@ -303,23 +315,22 @@ align-items: center;
     background-color: black;
 }
 
-.slave {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.book {
+    /* text-align: center; */
+    display: inline-grid;
+    grid-template-rows: 12vw 1fr 1fr 1fr;
     flex-direction: column;
     background-color: white;
     border: 4px solid white;
-    width: 39vh;
-    height: fit-content;
-    border-radius: 20px;
-    box-shadow: 0 0 50px white;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 5vw;
+    box-shadow: 0 0 25px white;
     color: black;
     font-family: SFPro;
     font-size: 20px;
-    margin: 2% 6.8%;
-    padding: 1%;
+    /* margin: 2% 6.8%; */
+    padding: 1vw;
     box-sizing: border-box;
 }
 
@@ -327,12 +338,12 @@ align-items: center;
     text-shadow: 0 0 20px white;
     /* -webkit-text-stroke: 1px white; */
     margin: 0;
-    font-size: 4vw;
+    font-size: 3.5vw;
 }
 
-.ageText {
+.authorText {
+    margin: 0;
     font-size: 2.5vw;
-    margin: 5px 0;
 }
 
 .costText {
@@ -342,7 +353,7 @@ align-items: center;
 
 .buyButton {
     overflow-wrap: break-word;
-    margin-top: 2.5%;
+    /* margin-top: 2.5%; */
     border: 4px solid black;
     background-color: white;
     color: black;
@@ -353,8 +364,8 @@ align-items: center;
     box-shadow: 0 2px 4px black;
     transition: background-color 0.2s ease-in-out;
     width: 80%;
-    height: 10vh;
-    font-size: 1.5vw;
+    height: 6vw;
+    font-size: 2.5vw;
 }
 
 .searchMenu {
@@ -382,6 +393,44 @@ align-items: center;
 
 .searchBar:hover {
     transform: scale(0.95);
+}
+
+@media screen and (max-width: 900px) {
+
+    body {
+        padding-top: 9vw;
+    }
+
+    .balance {
+        display: none;
+    }
+
+    .bookContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book {
+        grid-template-rows: 18vw 10vw 5vw;
+        height: 45vw;
+        width: 45vw;
+    }
+
+    .nameText {
+        font-size: 5vw;
+    }
+
+    .authorText {
+        font-size: 4vw;
+    }
+
+    .costText {
+        font-size: 4vw;
+    }
+
+    .buyButton {
+    font-size: 3vw;
+    height: auto;
+    }
 }
 
 #submitButton {
