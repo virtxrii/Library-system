@@ -6,7 +6,7 @@ function getRandomInt(min, max) {
 
 class Slave {
     static blackNames = [
-        'Deion',
+        'Dee',
         'Deiondre',
         'Dele',
         'Denzel',
