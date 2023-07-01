@@ -128,19 +128,11 @@ class Customer {
         this.balance = balance;
     }
 
-    sell(book, id) {
-        if (this.ownedBooks.includes(book)) {
-            this.balance += book.cost;
-            this.ownedBooks.splice(id, 1)
-            Book.books.push(book)
-            console.log("sold " + book.name)
-            displayOwnedBooks()
-        }
-    }
+    
 }
 
 //create a new customer named 'me'
-me = new Customer(9999);
+me = new Customer(100);
 
 //generate 6 random books
 for (let i = 0; i < 6; i++) {
@@ -219,7 +211,13 @@ function displayOwnedBooks() {
             let buyButton = document.createElement("button");
             buyButton.textContent = "Sell book";
             buyButton.classList.add('buyButton')
-            buyButton.addEventListener('click', me.sell.bind(book, book.bookID))
+            const sellBook = (book, id) => {
+                console.log(book)
+                me.balance += book.cost;
+                me.ownedBooks.splice(id, 1)
+                displayOwnedBooks()
+            }
+            buyButton.addEventListener('click', sellBook.bind(null, book, book.bookID))
 
 
 
@@ -237,10 +235,38 @@ function displayOwnedBooks() {
     }
 }
 
+setInterval(() => {
+    if (window.innerWidth >= 900) {
+        const topBar = document.getElementById('topbar')
+        var navbarItems = document.getElementById("navbarItems");
+        topBar.style.boxShadow = '0 2px 4px black';
+        navbarItems.style.visibility = 'visible';
+    }
+
+},  200)
+
+function toggleNavbar() {
+    const topBar = document.getElementById('topbar')
+    var navbarItems = document.getElementById("navbarItems");
+    if (window.innerWidth <= 900) {
+        if (navbarItems.style.visibility === "visible") {
+            topBar.style.boxShadow = '0 2px 4px black';
+            navbarItems.style.visibility = 'hidden';
+        } else {
+            topBar.style.boxShadow = 'none';
+            navbarItems.style.visibility = 'visible';
+        }
+    }
+    else {
+        topBar.style.boxShadow = '0 2px 4px black';
+        navbarItems.style.visibility = 'visible';
+    }
+}
+
 function submitBooks() {
 
     if (nameText.value !== '' && authorText !== '' && Number.isInteger(parseInt(costText.value))) {
-        newBook = new Book(nameText.value, parseInt(authorText.value), parseInt(costText.value))
+        let newBook = new Book(nameText.value, authorText.value, parseInt(costText.value))
         Book.books.push(newBook)
         console.log(newBook)
 
@@ -387,6 +413,11 @@ function buyBook(book, customer, id) {
     displayBooks()
 }
 
+
+function sellBook(book) {
+    console.log('sell book function executed')
+    console.log(book)
+}
 
 
 const addBookButton = document.getElementById("addBookButton");

@@ -4,27 +4,29 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Apple Books</title>
+    <link rel="icon" href="res/img.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-<div class="topbar">
+
+<div class="topbar" id="topbar">
     <div class="logo">
         <img class="apple" src="res/img.png" alt="">
         <h1 class="logo">Apple Books</h1>
     </div>
+
     <nav class="navbar">
-        <ul>
+        <a href="javascript:void(0);" class="icon" onclick="toggleNavbar()">
+            <i class="fa fa-bars" style="color: white"></i>
+        </a>
+        <ul id="navbarItems">
             <li><a href="index.html">Home</a></li>
+            <li><a href="#bookContainer">Books</a></li>
             <li><button id="displayOwnedBooksButton">Owned Books</button></li>
-            <li id="balance" class="balance">Balance</li>
+            <li><h1 id="balance" class="balance"></h1></li>
         </ul>
     </nav>
 </div>
-<div class="mainMenu" id="mainMenu">
-    <h1 class="menuText" style="margin-top: 5%">Books.</h1>
-    <h1 class="menuText">Management made simple.</h1>
-    <button id="addBookButton" class="addBookButton">Add a book</button>
-
-
 
 <div class="menuBackground" id="newBookMenuBG">
     <div id="bookMenu" class="bookMenu">
@@ -36,7 +38,7 @@
         <button id="submitButton">Submit</button>
     </div>
 </div>
-</div>
+
 <div id="ownedBooksContainer" class="ownedBooksContainer">
     <div id="ownedBooksPanel" class="ownedBooksPanel">
         <div class="ownedBooksPanelContainer" id="ownedBooksPanelContainer">
@@ -44,11 +46,21 @@
         </div>
     </div>
 </div>
-<div id="searchMenu" class="searchMenu">
+
+<div class="mainMenu" id="mainMenu">
+
+    <h1 class="menuText" style="margin-top: 5%">Books.</h1>
+    <h1 class="menuText">Management made simple.</h1>
+    <button id="addBookButton" class="addBookButton">Add a book</button>
     <input id="searchBar" class="searchBar" placeholder="Search...">
     <button id="displayAllBooksButton" class="addBookButton" style="font-size: 300%">Display all books</button>
+
+
 </div>
-<div class="bookPanel">
+
+
+
+<div class="bookPanel" id="bookPanel">
     <h1 class="titleText">Books:</h1>
     <div id="bookContainer" class="bookContainer">
         <h1 class="logo" style="font-size: 80px; color: white; margin-top: 0;">No books available.</h1>

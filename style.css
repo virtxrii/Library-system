@@ -10,15 +10,19 @@ body {
     background-color: white;
     background-size: 100%;
     width: auto;
-    padding: 0;
-    padding-top: 10vw;
     margin: 0;
     flex-direction: column;
 }
 
 .mainMenu {
+    padding: 8vw 1vw 8vw 1vw;
+    gap: 1.5vw;
+    background-image: url("res/modern-library-wallpaper-in-white-p9752-35021_image.jpg");
     position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
+    height: 100%;
     flex-direction: column;
     align-items: center;
 }
@@ -31,7 +35,7 @@ body {
     display: grid;
     flex-wrap: wrap;
     flex-direction: row;
-    height: 40%;
+    /* height: 40%; */
     justify-items: center;
     justify-content: center;
 }
@@ -41,14 +45,14 @@ body {
     align-self: center;
     position: relative;
     display: flex;
-    height: 60px;
+    height: 4vw;
     bottom: 5px;
 }
 
 .titleText {
     font-family: SFPro;
     color: white;
-    font-size: 15vh;
+    font-size: 6rem;
     align-self: center;
     margin-bottom: 2%;
     margin-top: 0;
@@ -56,16 +60,18 @@ body {
 }
 
 .logo {
+    margin: 0;
+    gap: 2vw;
     display: flex;
-    margin-right: 40px;
-    margin-left: 20px;
+    /* margin-right: 40px; */
+    /* margin-left: 20px; */
     font-family: SFPro;
     color: white;
-    font-size: 4vw;
+    font-size: 3vw;
 }
 
 .menuText {
-    text-shadow: 0 2px 4px black;
+    text-shadow: 0 2px 8px black;
     font-family: SFPro;
     color: white;
     stroke: black;
@@ -87,47 +93,60 @@ body {
 }
 
 .navbar ul{
+    gap: 2vw;
     list-style: none;
-    margin: 0;
+    margin-right: 2vw;
     padding: 0;
     display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    visibility: visible;
 }
 
 .navbar ul li {
     transition: font-size 0.3s ease-in-out;
     text-decoration: none;
-    padding: 10px;
-    margin-right: 40px;
+    /* padding: 10px; */
+    /* margin-right: 40px; */
 }
 
-.navbar li a, .navbar li button {
+.navbar li a, .navbar li button, .navbar li h1 {
     align-self: center;
-    font-size: 4vh;
     text-decoration: none;
+    font-size: 2vw;
     font-family: SFPro;
     color: white;
     border: none;
     background-color: rgba(0,0,0,0);
-    transition: text-shadow 0.15s ease-in-out;
 }
 
 .navbar li:hover a, .navbar li:hover button{
     text-shadow: 0 0px 12px white;
 }
 
+.icon {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+}
+
 .balance {
     display: block;
     font-family: SFPro;
     color: white;
-    font-size: 3vw;
-    position: absolute;
-    top: 15%;
-    right: 5%;
+    /* font-size: 3vw; */
+    /* position: absolute; */
+    top: 50%;
+    right: 50%;
+    /* transform: translate(-50%, -50%); */
 }
 
 
 .topbar {
-    height: 9vw;
+    height: fit-content;
     color: white;
     position: fixed;
     top: 0;
@@ -135,10 +154,12 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: rgba(0,0,0,1);
+    background-color: rgba(0,0,0,0.95);
+    backdrop-filter: blur(5px);
     padding: 0 10px;
     z-index: 9999;
     box-shadow: 0 2px 4px black;
+    justify-content: space-between;
 }
 
 .ownedBooksPanel {
@@ -162,37 +183,71 @@ body {
 }
 
 .ownedBooksPanelContainer {
-    gap: 1vw;
-    grid-template-columns: repeat(3, 1fr);
-    position: relative;
-    display: grid;
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: 40%;
-    box-shadow: inset 0px 0px 20px 20px black;
-    display: grid;
-    place-items: center;
-    width: 93vw;
-    overflow: auto;
-    height: 72vh;
-    flex-direction: row;
-    flex-wrap: wrap;
-    outline: 2px solid white;
-    justify-items: center;
-    justify-content: center;
+    
+padding: 1vw;
+    
+gap: 1vw;
+    
+grid-template-columns: repeat(3, 1fr);
+    
+position: relative;
+    
+display: grid;
+    
+flex-wrap: wrap;
+    
+flex-direction: row;
+    
+height: 40%;
+    
+box-shadow: inset 0px 0px 20px 20px black;
+    
+display: grid;
+    
+place-items: center;
+    
+width: 93vw;
+    
+overflow: auto;
+    
+height: 72vh;
+    
+flex-direction: row;
+    
+flex-wrap: wrap;
+    
+outline: 2px solid white;
+    
+justify-items: center;
+    
+justify-content: center;
+    
+align-items: center;
 }
 
 .ownedBooksContainer {
-    top: 0;
-    z-index: 988;
-    position: fixed;
-    /* display: grid; */
-    height: 100%;
-    width: 100%;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    
+top: 0;
+    
+z-index: 988;
+    
+position: fixed;
+    
+/* display: grid; */
+    
+height: 100%;
+    
+width: 100%;
+    
+flex-wrap: nowrap;
+    
+flex-direction: column;
+    
+align-content: center;
+    
+justify-content: center;
+    
+visibility: hidden;
 }
 
 .xbutton{
@@ -243,11 +298,10 @@ body {
 }
 
 .menuBackground {
-    align-items: center;
+    top: 0;
     flex-direction: column;
     display: flex;
-    align-items: center;
-    padding-top: 5%;
+    /* padding-top: 5%; */
     position: fixed;
     height: 100%;
     width: 100%;
@@ -258,6 +312,8 @@ body {
     transition: opacity 0.3s ease-in;
     transition: opacity 0.3s ease-out;
     z-index: 999;
+    align-items: center;
+    justify-content: center;
 }
 
 .active{
@@ -290,7 +346,7 @@ body {
 
 
 .addBookButton {
-    margin-top: 2.5%;
+    /* margin-top: 2.5%; */
     border: 4px solid black;
     background-color: white;
     color: black;
@@ -318,12 +374,12 @@ body {
 .book {
     /* text-align: center; */
     display: inline-grid;
-    grid-template-rows: 12vw 1fr 1fr 1fr;
+    grid-template-rows: 12vw 1fr 0.5fr 1fr;
     flex-direction: column;
     background-color: white;
     border: 4px solid white;
-    width: 30vw;
-    height: 30vw;
+    /* width: 30vw; */
+    /* height: 30vw; */
     border-radius: 5vw;
     box-shadow: 0 0 25px white;
     color: black;
@@ -374,17 +430,17 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4%;
+    /* padding: 4%; */
 }
 
 .searchBar {
     border: 4px solid black;
-    border-radius: 40px;
+    border-radius: 100px;
     position: relative;
     padding-left: 2.5%;
-    width: 35%;
-    height: 70px;
-    margin-bottom: 20px;
+    width: 500px;
+    height: 80px;
+    /* margin-bottom: 20px; */
     font-family: SFPro;
     font-size: 40px;
     transition: transform 0.3s ease-in-out;
@@ -393,6 +449,12 @@ body {
 
 .searchBar:hover {
     transform: scale(0.95);
+}
+
+@media screen and (min-width: 900px) {
+    .navbar ul {
+        visibility: visible;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -430,6 +492,59 @@ body {
     .buyButton {
     font-size: 3vw;
     height: auto;
+    }
+
+    .topbar {
+        height: 15vw;
+    }
+
+    .navbar {
+
+    }
+
+    .navbar ul {
+        overscroll-behavior-y: auto;
+        margin: 0;
+        /* padding: 0px; */
+        gap: 5vw;
+        background-color: rgba(0,0,0,0.95);
+        backdrop-filter: blur(16px);
+        width: 100%;
+        display: flex;
+        top: 15vw;
+        left: 0;
+        box-shadow: 0 2px 4px black;
+        position: absolute;
+        visibility: hidden;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        float: none;
+    }
+
+    .navbar ul li a, .navbar ul li h1, .navbar ul li button {
+        font-size: 5vw;
+    }
+
+    .logo {
+        width: 60vw;
+font-size: 6vw;
+    }
+
+    .apple {
+        
+height: 7vw;
+    }
+
+    .ownedBooksPanelContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .icon {
+        visibility: visible;
+        float: right;
     }
 }
 
